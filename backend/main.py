@@ -35,7 +35,7 @@ app.add_middleware(
 
 
 @app.get("/api/health")
-def health() -> dict[str, str | bool]:
+def health() -> dict:
     return {
         "ok": True,
         "model": os.environ.get("GEMINI_MODEL", "gemini-3.8-flash"),
