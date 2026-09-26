@@ -15,6 +15,8 @@ Folder ownership stays the same as in the README, so the three branches still me
 
 ## Person 1: `capture` (and sharing)
 
+**Done on `capture`.** Everything below works and was tested in headless Chrome, including an emulated iPhone for the QR page. For Person 3: `App.tsx` already holds `activeBlock` and `setActiveBlock`. Pass them to `Phone` to finish "Link the ink to the app".
+
 Must:
 
 - **Camera picker.** `facingMode: "environment"` picks the FaceTime camera on a laptop. Let the demoer choose an iPhone through Continuity Camera, or a document camera pointed down at the desk. This matters most on stage.
@@ -34,6 +36,7 @@ Must:
 - **Test set.** Photograph 10–15 real sketches with different handwriting, lighting and angles. Add a script that runs them all and shows the results side by side. Check every prompt or model change against it.
 - **Speed.** Measure the time for each photo across models and thinking settings (e.g. flash vs. flash-lite, lowest thinking budget). Pick the fastest one that still passes the test set. Getting from 20s down to about 8s changes how the demo feels.
 - **Retry once** on 5xx errors and bad JSON before showing an error.
+- **Log the real error.** `main.py` turns every Gemini exception into "Gemini could not read that paper" and logs nothing, so a rate limit, an outage and a bad photo look the same. Our key also hits `429 RESOURCE_EXHAUSTED` after a few quick calls. Check its quota before the demo.
 
 Should:
 

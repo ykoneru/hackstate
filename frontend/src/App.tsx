@@ -3,6 +3,7 @@ import { CapturePanel } from "./capture/CapturePanel";
 import { saveSheet } from "./capture/sheets";
 import { checkHealth, interpretSketch } from "./interpret/api";
 import { Phone } from "./render/Phone";
+import { SharePanel } from "./share/SharePanel";
 import type { Screen } from "./contract";
 
 type Phase = "idle" | "reading" | "ready" | "error";
@@ -96,6 +97,7 @@ export function App() {
             <Phone key={screenId} screen={screen} />
             {phase === "reading" && <p className="veil">Reading the ink on the paper</p>}
           </div>
+          {screen && phase === "ready" && <SharePanel key={screenId} screen={screen} />}
           {screen && phase === "ready" && (
             <details className="schema">
               <summary>What Gemini returned</summary>
