@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { CapturePanel } from "./capture/CapturePanel";
+import { saveSheet } from "./capture/sheets";
 import { checkHealth, interpretSketch } from "./interpret/api";
 import { Phone } from "./render/Phone";
+import { SharePanel } from "./share/SharePanel";
 import type { Screen } from "./contract";
 
 type Phase = "idle" | "reading" | "ready" | "error";
@@ -13,6 +15,8 @@ export function App() {
   const [phase, setPhase] = useState<Phase>("idle");
   const [error, setError] = useState<string | null>(null);
   const [hasKey, setHasKey] = useState<boolean | null>(null);
+  // The block pointed at on either side: the ink on the photo or the control in the phone.
+  const [activeBlock, setActiveBlock] = useState<number | null>(null);
 
   useEffect(() => {
     checkHealth()
@@ -23,7 +27,17 @@ export function App() {
   function handlePhoto(next: Blob | null) {
     setPhoto(next);
     setScreen(null);
+    setActiveBlock(null);
     setPhase("idle");
+    setError(null);
+  }
+
+  function handleReplay(sheetPhoto: Blob, sheetScreen: Screen) {
+    setPhoto(sheetPhoto);
+    setScreen(sheetScreen);
+    setScreenId((value) => value + 1);
+    setActiveBlock(null);
+    setPhase("ready");
     setError(null);
   }
 
@@ -33,7 +47,9 @@ export function App() {
     setError(null);
     try {
       const next = await interpretSketch(photo);
+      void saveSheet(photo, next).catch(() => undefined);
       setScreen(next);
+      setActiveBlock(null);
       setScreenId((value) => value + 1);
       setPhase("ready");
     } catch (caught) {
@@ -54,19 +70,27 @@ export function App() {
 
       <section className="workspace">
         <div className="pane">
-          <CapturePanel busy={phase === "reading"} onPhoto={handlePhoto} />
-          <button
-            type="button"
-            className="primary make"
-            disabled={!photo || phase === "reading"}
-            onClick={() => void makeApp()}
+          <CapturePanel
+            busy={phase === "reading"}
+            onPhoto={handlePhoto}
+            onReplay={handleReplay}
+            blocks={screen && phase === "ready" ? screen.blocks : []}
+            activeBlock={activeBlock}
+            onHoverBlock={setActiveBlock}
           >
-            {phase === "reading" ? "Reading the paper…" : "Make the app"}
-          </button>
-          {hasKey === false && (
-            <p className="hint">Add GEMINI_API_KEY to .env before you photograph the paper.</p>
-          )}
-          {error && <p className="error">{error}</p>}
+            <button
+              type="button"
+              className="primary make"
+              disabled={!photo || phase === "reading"}
+              onClick={() => void makeApp()}
+            >
+              {phase === "reading" ? "Reading the paper…" : "Make the app"}
+            </button>
+            {hasKey === false && (
+              <p className="hint">Add GEMINI_API_KEY to .env before you photograph the paper.</p>
+            )}
+            {error && <p className="error">{error}</p>}
+          </CapturePanel>
         </div>
 
         <div className="pane result">
@@ -74,6 +98,7 @@ export function App() {
             <Phone key={screenId} screen={screen} />
             {phase === "reading" && <p className="veil">Reading the ink on the paper</p>}
           </div>
+          {screen && phase === "ready" && <SharePanel key={screenId} screen={screen} />}
           {screen && phase === "ready" && (
             <details className="schema">
               <summary>What Gemini returned</summary>

@@ -57,6 +57,17 @@ npm run dev
 
 Open http://127.0.0.1:5173
 
+## Try it on a phone
+
+After Make the app, press Try it on your phone and scan the QR code. A phone can't reach `127.0.0.1`, so run a tunnel first:
+
+```bash
+brew install cloudflared
+cloudflared tunnel --url http://127.0.0.1:5173
+```
+
+Open Napkin at the https address it prints, and the QR code will use that address. Or put the address in `.env` as `PUBLIC_URL` and restart the backend.
+
 ## Demo
 
-Draw one screen on paper with a thick marker: a title, one text box, a short list, one button. Print the letters. Point the camera at the page, take the photo, press Make the app, then tap the button.
+Draw one screen on paper with a thick marker: a title, one text box, a short list, one button. Print the letters. Point the camera at the page and press Space. Hands off the paper before the 3 second countdown ends. Press Make the app, then tap the button.

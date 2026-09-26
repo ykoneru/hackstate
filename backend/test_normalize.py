@@ -10,6 +10,7 @@ def block(kind: str, title: str, **extra) -> Block:
         "placeholder": "",
         "choice_mode": "none",
         "items": [],
+        "box": [],
     }
     data.update(extra)
     return Block(**data)
@@ -90,9 +91,29 @@ def test_choices_drop_blank_items():
     assert [item.title for item in choices.items] == ["Oat latte"]
 
 
+def test_box_is_clamped_or_dropped():
+    screen = normalize(
+        Screen(
+            app_name="Walks",
+            accent="forest",
+            blocks=[
+                block("header", "Walks", box=[-20, 40.4, 120.6, 1200]),
+                block("field", "Dog name", box=[300, 80, 300, 700]),
+                block("toggle", "Reminders", box=[1, 2, 3]),
+                block("button", "Book", box=[800, 200, 880, 800]),
+            ],
+            success_title="Booked",
+            success_body="See you then.",
+        )
+    )
+    assert [item.box for item in screen.blocks] == [[0, 40, 121, 1000], [], [], [800, 200, 880, 800]]
+    assert screen.blocks[2].kind == "toggle"
+
+
 if __name__ == "__main__":
     test_button_moves_to_the_end()
     test_missing_button_is_added()
     test_second_header_becomes_text()
     test_choices_drop_blank_items()
+    test_box_is_clamped_or_dropped()
     print("ok")

@@ -9,8 +9,8 @@ class ListItem(BaseModel):
 
 
 class Block(BaseModel):
-    kind: Literal["header", "text", "field", "choices", "button"] = Field(
-        description="header, text, field, choices, or button."
+    kind: Literal["header", "text", "field", "choices", "button", "image", "toggle"] = Field(
+        description="header, text, field, choices, button, image, or toggle."
     )
     title: str = Field(description="Heading, field label, list title, or button label.")
     body: str = Field(description="Supporting sentence. Empty string when unused.")
@@ -19,6 +19,9 @@ class Block(BaseModel):
         description="one or many for choices. none for every other kind."
     )
     items: list[ListItem] = Field(description="Options for choices. Empty list otherwise.")
+    box: list[float] = Field(
+        description="Where this block is drawn on the photo: [ymin, xmin, ymax, xmax] on a 0-1000 scale."
+    )
 
 
 class Screen(BaseModel):

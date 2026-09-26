@@ -55,3 +55,160 @@
 }
 
 .file { display: none; }
+
+.countdown {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(96px, 18vw, 180px);
+  font-weight: 640;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  animation: tick 1s ease-out;
+}
+
+@keyframes tick {
+  from { transform: scale(1.25); opacity: 0.4; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.stage-note {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #241c16;
+  color: #f7f1e6;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.camera-pick {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6d6256;
+}
+
+.camera-pick select {
+  max-width: 220px;
+  border: 1px solid #cbbba6;
+  border-radius: 999px;
+  background: transparent;
+  color: #241c16;
+  font: inherit;
+  padding: 10px 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .countdown { animation: none; }
+}
+
+.ink-boxes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ink-box rect {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 120ms ease, fill 120ms ease;
+}
+
+.stage:hover .ink-box rect {
+  stroke: rgba(156, 59, 40, 0.35);
+  stroke-dasharray: 6 5;
+}
+
+.stage .ink-box.on rect {
+  fill: rgba(156, 59, 40, 0.1);
+  stroke: #9c3b28;
+  stroke-width: 3;
+  stroke-dasharray: none;
+}
+
+.ink-box text {
+  fill: #9c3b28;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: #fffcf8;
+  stroke-width: 0.3em;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.recent { margin-top: 22px; }
+
+.recent-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  color: #6d6256;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.recent-head p { margin: 0; }
+
+.link {
+  border: 0;
+  background: none;
+  color: #6d6256;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.recent-strip {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  padding-bottom: 6px;
+  overflow-x: auto;
+}
+
+.sheet {
+  flex: 0 0 auto;
+  width: 92px;
+  display: grid;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid #e3d5c2;
+  border-radius: 12px;
+  background: #f7f1e6;
+  color: #241c16;
+  font-size: 12px;
+  text-align: left;
+}
+
+.sheet:hover:not(:disabled) { border-color: #9c3b28; }
+
+.sheet:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sheet img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 8px;
+  background: white;
+}
+
+.sheet span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -5,6 +5,7 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from interpret import read_sketch
+from share import router as share_router
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_TYPES = {"image/jpeg", "image/png", "image/webp"}
@@ -32,6 +33,7 @@ app.add_middleware(
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
+app.include_router(share_router)
 
 
 @app.get("/api/health")

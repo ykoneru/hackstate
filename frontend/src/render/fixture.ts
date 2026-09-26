@@ -11,6 +11,7 @@ export const fixtureScreen: Screen = {
       placeholder: "",
       choice_mode: "none",
       items: [],
+      box: [40, 90, 150, 910],
     },
     {
       kind: "field",
@@ -19,6 +20,7 @@ export const fixtureScreen: Screen = {
       placeholder: "Who is this for?",
       choice_mode: "none",
       items: [],
+      box: [190, 90, 330, 910],
     },
     {
       kind: "choices",
@@ -31,6 +33,7 @@ export const fixtureScreen: Screen = {
         { title: "Drip", detail: "" },
         { title: "Tea", detail: "" },
       ],
+      box: [370, 90, 640, 910],
     },
     {
       kind: "button",
@@ -39,6 +42,7 @@ export const fixtureScreen: Screen = {
       placeholder: "",
       choice_mode: "none",
       items: [],
+      box: [760, 250, 850, 750],
     },
   ],
   success_title: "You're on the list",

@@ -9,6 +9,7 @@ def normalize(screen: Screen) -> Screen:
         block.title = _clip(block.title, 80)
         block.body = _clip(block.body, 240)
         block.placeholder = _clip(block.placeholder, 80)
+        block.box = _box(block.box)
         block.items = [
             ListItem(title=_clip(item.title, 60), detail=_clip(item.detail, 80))
             for item in block.items
@@ -52,6 +53,7 @@ def normalize(screen: Screen) -> Screen:
             placeholder="",
             choice_mode="none",
             items=[],
+            box=[],
         )
     screen.blocks = content + [button]
     screen.app_name = _clip(screen.app_name, 40) or "Sketch"
@@ -62,3 +64,12 @@ def normalize(screen: Screen) -> Screen:
 
 def _clip(value: str, limit: int) -> str:
     return " ".join(value.split())[:limit]
+
+
+def _box(value: list[float]) -> list[float]:
+    if len(value) != 4:
+        return []
+    ymin, xmin, ymax, xmax = (min(1000.0, max(0.0, float(v))) for v in value)
+    if ymax - ymin < 5 or xmax - xmin < 5:
+        return []
+    return [round(ymin), round(xmin), round(ymax), round(xmax)]

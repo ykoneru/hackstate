@@ -7,13 +7,15 @@ Folder ownership stays the same as in the README, so the three branches still me
 ## Step 0: together on `main`, before branching
 
 - [x] Fix the setup bugs. `backend/main.py` now runs on the macOS system Python 3.9, and Vite listens on `127.0.0.1:5173` to match the README.
-- [ ] Agree on contract v2 once. Change `frontend/src/contract.ts` and `backend/interpret/schema.py` together, then leave them alone:
+- [x] Agree on contract v2 once. Change `frontend/src/contract.ts` and `backend/interpret/schema.py` together, then leave them alone:
   - `box: [ymin, xmin, ymax, xmax]` on every block: where it sits on the photo, on Gemini's 0–1000 scale.
   - Two new block kinds: `image` (a drawn box with an X through it) and `toggle` (a drawn on/off switch).
   - New `accent` values only if Person 3 wants them.
-- [ ] Branch `capture`, `interpret` and `render` from that commit.
+- [x] Branch `capture`, `interpret` and `render` from that commit.
 
 ## Person 1: `capture` (and sharing)
+
+**Done on `capture`.** Everything below works and was tested in headless Chrome, including an emulated iPhone for the QR page. For Person 3: `App.tsx` already holds `activeBlock` and `setActiveBlock`. Pass them to `Phone` to finish "Link the ink to the app".
 
 Must:
 
@@ -34,6 +36,7 @@ Must:
 - **Test set.** Photograph 10–15 real sketches with different handwriting, lighting and angles. Add a script that runs them all and shows the results side by side. Check every prompt or model change against it.
 - **Speed.** Measure the time for each photo across models and thinking settings (e.g. flash vs. flash-lite, lowest thinking budget). Pick the fastest one that still passes the test set. Getting from 20s down to about 8s changes how the demo feels.
 - **Retry once** on 5xx errors and bad JSON before showing an error.
+- **Log the real error.** `main.py` turns every Gemini exception into "Gemini could not read that paper" and logs nothing, so a rate limit, an outage and a bad photo look the same. Our key also hits `429 RESOURCE_EXHAUSTED` after a few quick calls. Check its quota before the demo.
 
 Should:
 
