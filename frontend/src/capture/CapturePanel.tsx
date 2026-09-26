@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import type { Block, Screen } from "../contract";
+import { InkBoxes } from "./InkBoxes";
 import { preparePhoto } from "./preparePhoto";
+import { RecentSheets } from "./RecentSheets";
+import { photoFromSheet, type Sheet } from "./sheets";
 import "./capture.css";
 
 type Mode = "empty" | "camera" | "photo";
@@ -10,9 +14,14 @@ const COUNTDOWN = 3;
 type CapturePanelProps = {
   busy: boolean;
   onPhoto: (photo: Blob | null) => void;
+  onReplay: (photo: Blob, screen: Screen) => void;
+  // Blocks read from the photo on the stage, so their boxes can be drawn over the ink.
+  blocks: Block[];
+  activeBlock: number | null;
+  onHoverBlock: (index: number | null) => void;
 };
 
-export function CapturePanel({ busy, onPhoto }: CapturePanelProps) {
+export function CapturePanel({ busy, onPhoto, onReplay, blocks, activeBlock, onHoverBlock }: CapturePanelProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -24,6 +33,7 @@ export function CapturePanel({ busy, onPhoto }: CapturePanelProps) {
   const [streamVersion, setStreamVersion] = useState(0);
   const [count, setCount] = useState<number | null>(null);
   const [preparing, setPreparing] = useState(false);
+  const [photoSize, setPhotoSize] = useState<{ width: number; height: number } | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -86,6 +96,7 @@ export function CapturePanel({ busy, onPhoto }: CapturePanelProps) {
   }
 
   function replacePhoto(url: string | null) {
+    setPhotoSize(null);
     setPhotoUrl((current) => {
       if (current?.startsWith("blob:")) URL.revokeObjectURL(current);
       return url;
@@ -166,6 +177,16 @@ export function CapturePanel({ busy, onPhoto }: CapturePanelProps) {
     }
   }
 
+  async function replay(sheet: Sheet) {
+    setProblem(null);
+    setCount(null);
+    stopCamera();
+    const photo = await photoFromSheet(sheet);
+    replacePhoto(sheet.photo);
+    setMode("photo");
+    onReplay(photo, sheet.screen);
+  }
+
   const locked = busy || preparing;
 
   return (
@@ -184,7 +205,20 @@ export function CapturePanel({ busy, onPhoto }: CapturePanelProps) {
             )}
           </>
         )}
-        {mode === "photo" && photoUrl && <img src={photoUrl} alt="Photo of the paper sketch" />}
+        {mode === "photo" && photoUrl && (
+          <>
+            <img
+              src={photoUrl}
+              alt="Photo of the paper sketch"
+              onLoad={(event) =>
+                setPhotoSize({ width: event.currentTarget.naturalWidth, height: event.currentTarget.naturalHeight })
+              }
+            />
+            {photoSize && (
+              <InkBoxes {...photoSize} blocks={blocks} active={activeBlock} onHover={onHoverBlock} />
+            )}
+          </>
+        )}
         {mode === "empty" && (
           <div className="empty-stage">
             <p>Draw the app on paper first.</p>
@@ -232,6 +266,7 @@ export function CapturePanel({ busy, onPhoto }: CapturePanelProps) {
         />
       </div>
       {problem && <p className="error">{problem}</p>}
+      <RecentSheets disabled={locked} onPick={(sheet) => void replay(sheet)} />
     </div>
   );
 }

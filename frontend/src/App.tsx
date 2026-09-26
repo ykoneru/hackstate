@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CapturePanel } from "./capture/CapturePanel";
+import { saveSheet } from "./capture/sheets";
 import { checkHealth, interpretSketch } from "./interpret/api";
 import { Phone } from "./render/Phone";
 import type { Screen } from "./contract";
@@ -13,6 +14,8 @@ export function App() {
   const [phase, setPhase] = useState<Phase>("idle");
   const [error, setError] = useState<string | null>(null);
   const [hasKey, setHasKey] = useState<boolean | null>(null);
+  // The block pointed at on either side: the ink on the photo or the control in the phone.
+  const [activeBlock, setActiveBlock] = useState<number | null>(null);
 
   useEffect(() => {
     checkHealth()
@@ -23,7 +26,17 @@ export function App() {
   function handlePhoto(next: Blob | null) {
     setPhoto(next);
     setScreen(null);
+    setActiveBlock(null);
     setPhase("idle");
+    setError(null);
+  }
+
+  function handleReplay(sheetPhoto: Blob, sheetScreen: Screen) {
+    setPhoto(sheetPhoto);
+    setScreen(sheetScreen);
+    setScreenId((value) => value + 1);
+    setActiveBlock(null);
+    setPhase("ready");
     setError(null);
   }
 
@@ -33,7 +46,9 @@ export function App() {
     setError(null);
     try {
       const next = await interpretSketch(photo);
+      void saveSheet(photo, next).catch(() => undefined);
       setScreen(next);
+      setActiveBlock(null);
       setScreenId((value) => value + 1);
       setPhase("ready");
     } catch (caught) {
@@ -54,7 +69,14 @@ export function App() {
 
       <section className="workspace">
         <div className="pane">
-          <CapturePanel busy={phase === "reading"} onPhoto={handlePhoto} />
+          <CapturePanel
+            busy={phase === "reading"}
+            onPhoto={handlePhoto}
+            onReplay={handleReplay}
+            blocks={screen && phase === "ready" ? screen.blocks : []}
+            activeBlock={activeBlock}
+            onHoverBlock={setActiveBlock}
+          />
           <button
             type="button"
             className="primary make"
