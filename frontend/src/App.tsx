@@ -77,19 +77,20 @@ export function App() {
             blocks={screen && phase === "ready" ? screen.blocks : []}
             activeBlock={activeBlock}
             onHoverBlock={setActiveBlock}
-          />
-          <button
-            type="button"
-            className="primary make"
-            disabled={!photo || phase === "reading"}
-            onClick={() => void makeApp()}
           >
-            {phase === "reading" ? "Reading the paper…" : "Make the app"}
-          </button>
-          {hasKey === false && (
-            <p className="hint">Add GEMINI_API_KEY to .env before you photograph the paper.</p>
-          )}
-          {error && <p className="error">{error}</p>}
+            <button
+              type="button"
+              className="primary make"
+              disabled={!photo || phase === "reading"}
+              onClick={() => void makeApp()}
+            >
+              {phase === "reading" ? "Reading the paper…" : "Make the app"}
+            </button>
+            {hasKey === false && (
+              <p className="hint">Add GEMINI_API_KEY to .env before you photograph the paper.</p>
+            )}
+            {error && <p className="error">{error}</p>}
+          </CapturePanel>
         </div>
 
         <div className="pane result">

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { Block, Screen } from "../contract";
 import { InkBoxes } from "./InkBoxes";
 import { preparePhoto } from "./preparePhoto";
@@ -19,9 +19,19 @@ type CapturePanelProps = {
   blocks: Block[];
   activeBlock: number | null;
   onHoverBlock: (index: number | null) => void;
+  // The next step after the photo, shown above the recent sheets so it stays next to the photo.
+  children?: ReactNode;
 };
 
-export function CapturePanel({ busy, onPhoto, onReplay, blocks, activeBlock, onHoverBlock }: CapturePanelProps) {
+export function CapturePanel({
+  busy,
+  onPhoto,
+  onReplay,
+  blocks,
+  activeBlock,
+  onHoverBlock,
+  children,
+}: CapturePanelProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -266,6 +276,7 @@ export function CapturePanel({ busy, onPhoto, onReplay, blocks, activeBlock, onH
         />
       </div>
       {problem && <p className="error">{problem}</p>}
+      {children}
       <RecentSheets disabled={locked} onPick={(sheet) => void replay(sheet)} />
     </div>
   );
