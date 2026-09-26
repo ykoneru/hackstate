@@ -84,13 +84,27 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .eyebrow::after { content: "."; color: var(--highlight); }
 
 .theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 8px 12px;
+  padding: 0;
   background: var(--surface-soft);
   color: var(--muted);
   font-size: 13px;
   font-weight: 600;
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .theme-toggle:hover { color: var(--text); border-color: var(--text); }
