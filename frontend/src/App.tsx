@@ -82,7 +82,12 @@ export function App() {
       </header>
 
       <section className="workspace">
-        <div className="pane">
+        <div className="pane capture-pane">
+          <div className="pane-head">
+            <span className="pane-number">01</span>
+            <h2>Capture</h2>
+            <span className="pane-detail">Your paper sketch</span>
+          </div>
           <CapturePanel
             busy={phase === "reading"}
             onPhoto={handlePhoto}
@@ -107,6 +112,11 @@ export function App() {
         </div>
 
         <div className="pane result">
+          <div className="pane-head">
+            <span className="pane-number">02</span>
+            <h2>Preview</h2>
+            <span className="pane-detail">Your working app</span>
+          </div>
           <div className={phase === "reading" ? "phone-slot busy" : "phone-slot"}>
             <Phone key={screenId} screen={screen} />
             {phase === "reading" && <p className="veil">Reading the ink on the paper</p>}

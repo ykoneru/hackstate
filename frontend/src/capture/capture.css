@@ -5,7 +5,7 @@
   place-items: center;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 8px;
   background: var(--surface);
   box-shadow: var(--shadow);
 }
@@ -19,7 +19,7 @@
   position: absolute;
   inset: 7%;
   border: 2px dashed rgba(255, 255, 255, 0.7);
-  border-radius: 12px;
+  border-radius: 8px;
   pointer-events: none;
 }
 
@@ -77,7 +77,7 @@
   transform: translateX(-50%);
   margin: 0;
   padding: 8px 14px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--surface);
   color: var(--text);
   font-size: 13px;
@@ -94,7 +94,7 @@
 .camera-pick select {
   max-width: 220px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 999px;
   background: var(--surface);
   color: var(--text);
   padding: 9px 12px;
@@ -113,15 +113,15 @@
   vector-effect: non-scaling-stroke;
   transition: stroke 120ms ease, fill 120ms ease;
 }
-.stage:hover .ink-box rect { stroke: color-mix(in srgb, var(--accent) 55%, transparent); stroke-dasharray: 6 5; }
+.stage:hover .ink-box rect { stroke: color-mix(in srgb, var(--highlight) 55%, transparent); stroke-dasharray: 6 5; }
 .stage .ink-box.on rect {
-  fill: color-mix(in srgb, var(--accent) 16%, transparent);
-  stroke: var(--accent);
+  fill: color-mix(in srgb, var(--highlight) 16%, transparent);
+  stroke: var(--highlight);
   stroke-width: 3;
   stroke-dasharray: none;
 }
 .ink-box text {
-  fill: var(--accent);
+  fill: var(--highlight);
   font-weight: 700;
   paint-order: stroke;
   stroke: var(--surface);
@@ -148,7 +148,7 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.link:hover { color: var(--accent); }
+.link:hover { color: var(--highlight); }
 .recent-strip {
   display: flex;
   gap: 10px;
@@ -169,7 +169,7 @@
   font-size: 12px;
   text-align: left;
 }
-.sheet:hover:not(:disabled) { border-color: var(--accent); }
+.sheet:hover:not(:disabled) { border-color: var(--text); }
 .sheet img {
   width: 100%;
   aspect-ratio: 3 / 4;
