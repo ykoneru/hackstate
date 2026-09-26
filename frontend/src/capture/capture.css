@@ -1,6 +1,6 @@
 .stage {
   position: relative;
-  height: clamp(380px, 44vw, 530px);
+  height: clamp(320px, 34vw, 390px);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -180,7 +180,7 @@
 .sheet span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 @media (max-width: 500px) {
-  .stage { height: min(55vh, 470px); }
+  .stage { height: min(47vh, 390px); }
   .actions > button { flex: 1 1 auto; }
 }
 @media (prefers-reduced-motion: reduce) {

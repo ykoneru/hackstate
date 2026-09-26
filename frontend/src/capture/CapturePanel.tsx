@@ -206,7 +206,7 @@ export function CapturePanel({
           <>
             <video ref={videoRef} autoPlay playsInline muted aria-label="Camera pointed at the paper" />
             <div className="frame-guide">
-              <span>Fit the paper in the frame · Space takes the photo</span>
+              <span>Fit sketch in frame · Space to shoot</span>
             </div>
             {count !== null && count > 0 && (
               <div className="countdown" aria-live="assertive">
@@ -231,11 +231,10 @@ export function CapturePanel({
         )}
         {mode === "empty" && (
           <div className="empty-stage">
-            <p>Draw the app on paper first.</p>
-            <p>Then take a photo of that page. Nothing is drawn on this screen.</p>
+            <p>Your sketch goes here.</p>
           </div>
         )}
-        {preparing && <p className="stage-note">Cleaning up the photo…</p>}
+        {preparing && <p className="stage-note">Preparing photo…</p>}
       </div>
       <div className="actions">
         {mode !== "camera" && (
@@ -249,7 +248,7 @@ export function CapturePanel({
           </button>
         )}
         <button type="button" className="secondary" disabled={locked} onClick={() => fileRef.current?.click()}>
-          Use a photo of the paper
+          Upload photo
         </button>
         {mode === "camera" && cameras.length > 1 && (
           <label className="camera-pick">

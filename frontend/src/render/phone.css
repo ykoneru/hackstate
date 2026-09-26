@@ -1,19 +1,19 @@
 .device {
-  width: 322px;
-  height: 636px;
+  width: 280px;
+  height: 520px;
   padding: 9px;
-  border: 1px solid #293240;
+  border: 1px solid #2e332e;
   border-radius: 35px;
-  background: #111923;
-  box-shadow: 0 24px 52px rgba(24, 37, 52, 0.18);
+  background: #161b17;
+  box-shadow: 0 24px 52px rgba(28, 31, 26, 0.16);
 }
 
 .device-screen {
-  --phone-bg: #ffffff;
-  --phone-text: #1b2733;
-  --phone-muted: #617183;
-  --phone-border: #dce4ec;
-  --phone-input: #f8fafc;
+  --phone-bg: #fffefa;
+  --phone-text: #252923;
+  --phone-muted: #687068;
+  --phone-border: #dfe3d9;
+  --phone-input: #f8f9f5;
   --phone-button-text: #ffffff;
   height: 100%;
   display: flex;
@@ -25,17 +25,17 @@
 }
 
 :root[data-theme="dark"] .device {
-  border-color: #465368;
-  background: #080c12;
+  border-color: #49534b;
+  background: #0d120e;
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.3);
 }
 :root[data-theme="dark"] .device-screen {
-  --phone-bg: #17212c;
-  --phone-text: #edf3fa;
-  --phone-muted: #a4b3c3;
-  --phone-border: #39495a;
-  --phone-input: #202d3a;
-  --phone-button-text: #152233;
+  --phone-bg: #202721;
+  --phone-text: #f0f2eb;
+  --phone-muted: #adb9ac;
+  --phone-border: #414d41;
+  --phone-input: #2a332b;
+  --phone-button-text: #172018;
 }
 
 .device-screen.waiting {

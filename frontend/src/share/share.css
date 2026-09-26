@@ -1,4 +1,4 @@
-.share { width: min(100%, 322px); margin-top: 14px; }
+.share { width: min(100%, 280px); margin-top: 14px; }
 .share > .secondary { width: 100%; }
 .share-card {
   display: grid;

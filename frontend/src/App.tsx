@@ -68,29 +68,13 @@ export function App() {
             {theme === "light" ? "Dark mode" : "Light mode"}
           </button>
         </div>
-        <h1>Point it at the paper.</h1>
-        <ol className="onboarding" aria-label="How to make your app">
-          <li>
-            <span className="step-number" aria-hidden="true">01</span>
-            <div><strong>Draw your screen</strong><p>Sketch one app screen on a sheet of paper.</p></div>
-          </li>
-          <li>
-            <span className="step-number" aria-hidden="true">02</span>
-            <div><strong>Take a photo</strong><p>Use your camera or upload a photo of the page.</p></div>
-          </li>
-          <li>
-            <span className="step-number" aria-hidden="true">03</span>
-            <div><strong>Make the app</strong><p>Gemini reads the ink and creates a tappable preview.</p></div>
-          </li>
-        </ol>
+        <h1>Sketch to screen.</h1>
       </header>
 
       <section className="workspace">
         <div className="pane capture-pane">
           <div className="pane-head">
-            <span className="pane-number">01</span>
             <h2>Capture</h2>
-            <span className="pane-detail">Your paper sketch</span>
           </div>
           <CapturePanel
             busy={phase === "reading"}
@@ -114,21 +98,13 @@ export function App() {
 
         <div className="pane result">
           <div className="pane-head">
-            <span className="pane-number">02</span>
             <h2>Preview</h2>
-            <span className="pane-detail">Your working app</span>
           </div>
           <div className={phase === "reading" ? "phone-slot busy" : "phone-slot"}>
             <Phone key={screenId} screen={screen} />
             {phase === "reading" && <p className="veil">Reading the ink on the paper</p>}
           </div>
           {screen && phase === "ready" && <SharePanel key={screenId} screen={screen} />}
-          {screen && phase === "ready" && (
-            <details className="schema">
-              <summary>What Gemini returned</summary>
-              <pre>{JSON.stringify(screen, null, 2)}</pre>
-            </details>
-          )}
         </div>
       </section>
     </main>

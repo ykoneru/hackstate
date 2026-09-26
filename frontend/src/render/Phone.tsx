@@ -11,7 +11,7 @@ export function Phone({ screen }: PhoneProps) {
     return (
       <div className="device">
         <div className="device-screen waiting">
-          <p>Take a photo of the paper. The app lands here.</p>
+          <p>Preview appears here.</p>
         </div>
       </div>
     );
