@@ -55,3 +55,58 @@
 }
 
 .file { display: none; }
+
+.countdown {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(96px, 18vw, 180px);
+  font-weight: 640;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  animation: tick 1s ease-out;
+}
+
+@keyframes tick {
+  from { transform: scale(1.25); opacity: 0.4; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.stage-note {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #241c16;
+  color: #f7f1e6;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.camera-pick {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6d6256;
+}
+
+.camera-pick select {
+  max-width: 220px;
+  border: 1px solid #cbbba6;
+  border-radius: 999px;
+  background: transparent;
+  color: #241c16;
+  font: inherit;
+  padding: 10px 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .countdown { animation: none; }
+}
