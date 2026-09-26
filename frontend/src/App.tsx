@@ -69,9 +69,20 @@ export function App() {
           </button>
         </div>
         <h1>Point it at the paper.</h1>
-        <p className="lede">
-          Draw the app on a sheet of paper. Take a photo of that page. Gemini reads the ink and this screen becomes the app.
-        </p>
+        <ol className="onboarding" aria-label="How to make your app">
+          <li>
+            <span className="step-number" aria-hidden="true">01</span>
+            <div><strong>Draw your screen</strong><p>Sketch one app screen on a sheet of paper.</p></div>
+          </li>
+          <li>
+            <span className="step-number" aria-hidden="true">02</span>
+            <div><strong>Take a photo</strong><p>Use your camera or upload a photo of the page.</p></div>
+          </li>
+          <li>
+            <span className="step-number" aria-hidden="true">03</span>
+            <div><strong>Make the app</strong><p>Gemini reads the ink and creates a tappable preview.</p></div>
+          </li>
+        </ol>
       </header>
 
       <section className="workspace">
