@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CapturePanel } from "./capture/CapturePanel";
 import { saveSheet } from "./capture/sheets";
-import { checkHealth, interpretSketch } from "./interpret/api";
+import { interpretSketch } from "./interpret/api";
 import { Phone } from "./render/Phone";
 import { SharePanel } from "./share/SharePanel";
 import { applyTheme, initialTheme, type Theme } from "./theme";
@@ -15,16 +15,9 @@ export function App() {
   const [screenId, setScreenId] = useState(0);
   const [phase, setPhase] = useState<Phase>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [hasKey, setHasKey] = useState<boolean | null>(null);
   const [theme, setTheme] = useState<Theme>(initialTheme);
   // The block pointed at on either side: the ink on the photo or the control in the phone.
   const [activeBlock, setActiveBlock] = useState<number | null>(null);
-
-  useEffect(() => {
-    checkHealth()
-      .then((health) => setHasKey(health.has_key))
-      .catch(() => setHasKey(null));
-  }, []);
 
   function toggleTheme() {
     const next = theme === "light" ? "dark" : "light";
@@ -104,9 +97,6 @@ export function App() {
             >
               {phase === "reading" ? "Reading the paper…" : "Make the app"}
             </button>
-            {hasKey === false && (
-              <p className="hint">Add GEMINI_API_KEY to .env before you photograph the paper.</p>
-            )}
             {error && <p className="error">{error}</p>}
           </CapturePanel>
         </div>
