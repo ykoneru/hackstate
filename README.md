@@ -1,2 +1,4 @@
 # hackstate
-hackthon project with gemini api
+hackthon project with gemini api 
+- Napkin Project
+  
