@@ -1,9 +1,9 @@
 .device {
-  width: 280px;
-  height: 520px;
-  padding: 9px;
+  width: 340px;
+  height: min(680px, 100dvh);
+  padding: 12px;
   border: 1px solid #2e332e;
-  border-radius: 35px;
+  border-radius: 36px;
   background: #161b17;
   box-shadow: 0 24px 52px rgba(28, 31, 26, 0.16);
 }

@@ -27,6 +27,7 @@
   min-height: 100dvh;
   display: grid;
   place-items: center;
+  overflow: auto;
   padding: 24px 16px;
 }
 .shared-note { max-width: 32ch; color: var(--muted); text-align: center; }

@@ -25,10 +25,10 @@ export function RecentSheets({ disabled, onPick }: RecentSheetsProps) {
             className="sheet"
             disabled={disabled}
             onClick={() => onPick(sheet)}
-            title={`Show ${sheet.screen.app_name} again`}
+            title={`Show ${sheet.game.manifest.title} again`}
           >
             <img src={sheet.photo} alt="" />
-            <span>{sheet.screen.app_name}</span>
+            <span>{sheet.game.manifest.title}</span>
           </button>
         ))}
       </div>

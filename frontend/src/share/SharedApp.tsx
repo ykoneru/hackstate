@@ -1,26 +1,31 @@
 import { useEffect, useState } from "react";
-import type { Screen } from "../contract";
+import type { GameSave } from "../contract";
 import { Phone } from "../render/Phone";
-import { loadSharedScreen } from "./api";
+import { loadSharedGame, updateShared } from "./api";
 import "./share.css";
 
-// What a phone opens from the QR code: only the app, filling the screen.
+// What a phone opens from the QR code: the game, filling the screen, resumable mid-play.
 export function SharedApp({ id }: { id: string }) {
-  const [screen, setScreen] = useState<Screen | null>(null);
+  const [game, setGame] = useState<GameSave | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    loadSharedScreen(id)
+    loadSharedGame(id)
       .then((next) => {
-        setScreen(next);
-        document.title = next.app_name;
+        setGame(next);
+        document.title = next.manifest.title;
       })
       .catch((caught: Error) => setError(caught.message));
   }, [id]);
 
+  function handleGame(next: GameSave) {
+    setGame(next);
+    void updateShared(id, next).catch(() => undefined);
+  }
+
   return (
     <main className="shared">
-      {screen ? <Phone screen={screen} /> : <p className="shared-note">{error ?? "Opening the app…"}</p>}
+      {game ? <Phone game={game} onChange={handleGame} /> : <p className="shared-note">{error ?? "Opening the game…"}</p>}
     </main>
   );
 }

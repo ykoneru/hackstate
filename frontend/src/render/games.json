@@ -1,0 +1,902 @@
+[
+  {
+    "id": "ping_pong",
+    "title": "Ping Pong",
+    "engine": "ping_pong",
+    "look": "table",
+    "blurb": "Paddles and a ball on a table with a net. Also choose this for table tennis, tennis, badminton, air hockey, pong, squash, hockey, volleyball, pickleball, racquetball, foosball, beer pong, pool, and soccer.",
+    "win": "You took the match.",
+    "lose": "The rally got away."
+  },
+  {
+    "id": "breakout",
+    "title": "Breakout",
+    "engine": "breakout",
+    "look": "brick",
+    "blurb": "A paddle under a wall of bricks.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "flappy_bird",
+    "title": "Flappy Bird",
+    "engine": "flappy_bird",
+    "look": "bird",
+    "blurb": "A bird flying through gaps. Also a helicopter, jetpack, paper plane, rocket, dragon, or balloon.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "traffic",
+    "title": "Traffic",
+    "engine": "traffic",
+    "look": "car",
+    "blurb": "A car switching lanes to dodge traffic. Also racing, a freeway, ski, snowboard, bike, boat, or spaceship.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "frogger",
+    "title": "Frogger",
+    "engine": "frogger",
+    "look": "cross",
+    "blurb": "Crossing a road lane by lane. Also crossy road.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "hurdles",
+    "title": "Hurdles",
+    "engine": "hurdles",
+    "look": "hurdle",
+    "blurb": "Running and jumping over hurdles. Also a dinosaur, mario, parkour, or temple run.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "maze",
+    "title": "Maze",
+    "engine": "maze",
+    "look": "ink",
+    "blurb": "Walls with a start and an exit. Also a labyrinth, dungeon, or hedge maze.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "snake",
+    "title": "Snake",
+    "engine": "snake",
+    "look": "green",
+    "blurb": "A snake that eats and grows longer. Also a worm.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "space_invaders",
+    "title": "Space Invaders",
+    "engine": "space_invaders",
+    "look": "invader",
+    "blurb": "Aliens marching down while you shoot. Also galaga or zombies.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "duck_hunt",
+    "title": "Duck Hunt",
+    "engine": "duck_hunt",
+    "look": "duck",
+    "blurb": "Ducks or targets to shoot in the air.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "fruit_catch",
+    "title": "Fruit Catch",
+    "engine": "fruit_catch",
+    "look": "fruit",
+    "blurb": "A basket catching falling fruit, eggs, or apples.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "whack_a_mole",
+    "title": "Whack-a-Mole",
+    "engine": "whack_a_mole",
+    "look": "mole",
+    "blurb": "Moles, bugs, or a boxer popping up to hit. Also fruit to slice.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "tic_tac_toe",
+    "title": "Tic-Tac-Toe",
+    "engine": "tic_tac_toe",
+    "look": "grid",
+    "blurb": "A grid of X and O.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "tetris",
+    "title": "Tetris",
+    "engine": "tetris",
+    "look": "blocks",
+    "blurb": "Falling blocks to stack into lines.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "memory_match",
+    "title": "Memory Match",
+    "engine": "memory_match",
+    "look": "ink",
+    "blurb": "Cards to flip and find pairs.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "connect_four",
+    "title": "Connect Four",
+    "engine": "connect_four",
+    "look": "ink",
+    "blurb": "Discs dropped in columns, four in a row.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "minesweeper",
+    "title": "Minesweeper",
+    "engine": "minesweeper",
+    "look": "ink",
+    "blurb": "A grid of hidden mines.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "slide_puzzle",
+    "title": "Slide Puzzle",
+    "engine": "slide_puzzle",
+    "look": "ink",
+    "blurb": "Sliding tiles into order.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "simon",
+    "title": "Simon",
+    "engine": "simon",
+    "look": "ink",
+    "blurb": "Repeat a growing color sequence.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "reaction",
+    "title": "Reaction",
+    "engine": "reaction",
+    "look": "ink",
+    "blurb": "Tap when the screen turns green.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "higher_lower",
+    "title": "Higher or Lower",
+    "engine": "higher_lower",
+    "look": "ink",
+    "blurb": "Guess if the next card is higher or lower.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "blackjack",
+    "title": "Blackjack",
+    "engine": "blackjack",
+    "look": "ink",
+    "blurb": "Hit or stand to get closer to 21.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "rock_paper_scissors",
+    "title": "Rock Paper Scissors",
+    "engine": "rock_paper_scissors",
+    "look": "ink",
+    "blurb": "Rock, paper, and scissors, first to two.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "hangman",
+    "title": "Hangman",
+    "engine": "hangman",
+    "look": "ink",
+    "blurb": "Guess the letters of a word.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "mastermind",
+    "title": "Mastermind",
+    "engine": "mastermind",
+    "look": "ink",
+    "blurb": "Guess a hidden row of colors.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "lights_out",
+    "title": "Lights Out",
+    "engine": "lights_out",
+    "look": "ink",
+    "blurb": "Toggle lights until they are all off.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "hanoi",
+    "title": "Tower of Hanoi",
+    "engine": "hanoi",
+    "look": "ink",
+    "blurb": "Move a stack of disks to another peg.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "nim",
+    "title": "Nim",
+    "engine": "nim",
+    "look": "ink",
+    "blurb": "Take stones, and take the last one.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "dots_and_boxes",
+    "title": "Dots and Boxes",
+    "engine": "dots_and_boxes",
+    "look": "ink",
+    "blurb": "Draw lines and claim boxes.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "gomoku",
+    "title": "Gomoku",
+    "engine": "gomoku",
+    "look": "ink",
+    "blurb": "Get four stones in a row.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "othello",
+    "title": "Othello",
+    "engine": "othello",
+    "look": "ink",
+    "blurb": "Flip discs by trapping a row.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "battleship",
+    "title": "Battleship",
+    "engine": "battleship",
+    "look": "ink",
+    "blurb": "Find a hidden ship on a grid.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "sokoban",
+    "title": "Sokoban",
+    "engine": "sokoban",
+    "look": "ink",
+    "blurb": "Push a crate onto a marked square.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "match3",
+    "title": "Match 3",
+    "engine": "match3",
+    "look": "ink",
+    "blurb": "Swap tiles to line up three of a color.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "twenty48",
+    "title": "2048",
+    "engine": "twenty48",
+    "look": "ink",
+    "blurb": "Slide numbered tiles to combine them.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "word_guess",
+    "title": "Word Guess",
+    "engine": "word_guess",
+    "look": "ink",
+    "blurb": "Guess a five letter word.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "piano_tiles",
+    "title": "Piano Tiles",
+    "engine": "piano_tiles",
+    "look": "ink",
+    "blurb": "Tap the black tiles as they come.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "stack_tower",
+    "title": "Stack Tower",
+    "engine": "stack_tower",
+    "look": "ink",
+    "blurb": "Drop a moving block onto the stack.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "knife_hit",
+    "title": "Knife Hit",
+    "engine": "knife_hit",
+    "look": "ink",
+    "blurb": "Throw knives into a spinning log.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "lunar_lander",
+    "title": "Lunar Lander",
+    "engine": "lunar_lander",
+    "look": "ink",
+    "blurb": "Thrust a lander down onto a pad.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "asteroids",
+    "title": "Asteroids",
+    "engine": "asteroids",
+    "look": "ship",
+    "blurb": "Fly a ship and shoot floating rocks.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "missile_command",
+    "title": "Missile Command",
+    "engine": "missile_command",
+    "look": "ink",
+    "blurb": "Explode missiles before they land.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "bowling",
+    "title": "Bowling",
+    "engine": "bowling",
+    "look": "ink",
+    "blurb": "Roll a ball into pins.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "darts",
+    "title": "Darts",
+    "engine": "darts",
+    "look": "ink",
+    "blurb": "Throw darts at a round board.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "mini_golf",
+    "title": "Mini Golf",
+    "engine": "mini_golf",
+    "look": "ink",
+    "blurb": "Putt a ball into a hole.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "basketball",
+    "title": "Basketball",
+    "engine": "basketball",
+    "look": "ink",
+    "blurb": "Shoot a ball toward a hoop.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "penalty",
+    "title": "Penalty Kick",
+    "engine": "penalty",
+    "look": "ink",
+    "blurb": "Pick a corner and beat the goalie.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "baseball",
+    "title": "Baseball",
+    "engine": "baseball",
+    "look": "ink",
+    "blurb": "Swing when the pitch is in the zone.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "fishing",
+    "title": "Fishing",
+    "engine": "fishing",
+    "look": "ink",
+    "blurb": "Wait for a bite, then pull.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "typing_race",
+    "title": "Typing Race",
+    "engine": "typing_race",
+    "look": "ink",
+    "blurb": "Type the words on the screen.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "math_quiz",
+    "title": "Math Quiz",
+    "engine": "math_quiz",
+    "look": "ink",
+    "blurb": "Answer short arithmetic questions.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "trivia",
+    "title": "Trivia",
+    "engine": "trivia",
+    "look": "ink",
+    "blurb": "Answer a few short questions.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "number_memory",
+    "title": "Number Memory",
+    "engine": "number_memory",
+    "look": "ink",
+    "blurb": "Remember a number, then type it back.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "spot_the_odd",
+    "title": "Spot the Odd",
+    "engine": "spot_the_odd",
+    "look": "ink",
+    "blurb": "Find the cell that does not match.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "pipe_connect",
+    "title": "Pipe Connect",
+    "engine": "pipe_connect",
+    "look": "ink",
+    "blurb": "Rotate pipes until they connect.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "flood_it",
+    "title": "Flood It",
+    "engine": "flood_it",
+    "look": "ink",
+    "blurb": "Spread one color across the board.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "pacman",
+    "title": "Pac-Man",
+    "engine": "pacman",
+    "look": "dungeon",
+    "blurb": "Eat dots in a maze while a ghost chases.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "platform_jump",
+    "title": "Platform Jump",
+    "engine": "platform_jump",
+    "look": "hero",
+    "blurb": "Run and jump across platforms to a flag.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "doodle_jump",
+    "title": "Doodle Jump",
+    "engine": "doodle_jump",
+    "look": "hero",
+    "blurb": "Bounce upward from platform to platform.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "bomber",
+    "title": "Bomber",
+    "engine": "bomber",
+    "look": "ink",
+    "blurb": "Place a bomb and clear the blocks.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "tank_duel",
+    "title": "Tank Duel",
+    "engine": "tank_duel",
+    "look": "tank",
+    "blurb": "Aim a turret and hit the other tank.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "centipede",
+    "title": "Centipede",
+    "engine": "centipede",
+    "look": "ink",
+    "blurb": "Shoot a centipede before it reaches you.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "checkers",
+    "title": "Checkers",
+    "engine": "checkers",
+    "look": "ink",
+    "blurb": "Jump the other side's pieces.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "golf_solitaire",
+    "title": "Golf Solitaire",
+    "engine": "golf_solitaire",
+    "look": "ink",
+    "blurb": "Play cards one rank away to clear the row.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "war",
+    "title": "War",
+    "engine": "war",
+    "look": "ink",
+    "blurb": "Flip cards. The higher card takes the round.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "pig_dice",
+    "title": "Pig Dice",
+    "engine": "pig_dice",
+    "look": "ink",
+    "blurb": "Roll to bank points, but a one wipes the turn.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "yahtzee",
+    "title": "Yahtzee",
+    "engine": "yahtzee",
+    "look": "ink",
+    "blurb": "Roll dice and hold them for three of a kind.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "stopwatch",
+    "title": "Stopwatch",
+    "engine": "stopwatch",
+    "look": "ink",
+    "blurb": "Stop the clock on five seconds.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "balance",
+    "title": "Balance",
+    "engine": "balance",
+    "look": "ink",
+    "blurb": "Keep a needle in the middle.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "rhythm",
+    "title": "Rhythm",
+    "engine": "rhythm",
+    "look": "ink",
+    "blurb": "Tap on the beat.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "mancala",
+    "title": "Mancala",
+    "engine": "mancala",
+    "look": "ink",
+    "blurb": "Sow stones around the pits.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "sudoku",
+    "title": "Sudoku",
+    "engine": "sudoku",
+    "look": "ink",
+    "blurb": "Fill a number grid so each row has 1 through 4.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "nonogram",
+    "title": "Nonogram",
+    "engine": "nonogram",
+    "look": "ink",
+    "blurb": "Fill cells to match the clue numbers.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "anagram",
+    "title": "Anagram",
+    "engine": "anagram",
+    "look": "ink",
+    "blurb": "Unscramble the letters into a word.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "coin_clicker",
+    "title": "Coin Clicker",
+    "engine": "coin_clicker",
+    "look": "ink",
+    "blurb": "Tap for coins and buy a faster tap.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "light_cycle",
+    "title": "Light Cycle",
+    "engine": "light_cycle",
+    "look": "ink",
+    "blurb": "Ride a line and do not hit a trail.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "billiards",
+    "title": "Billiards",
+    "engine": "billiards",
+    "look": "pool",
+    "blurb": "Aim a cue and pocket the object ball.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "curling",
+    "title": "Curling",
+    "engine": "curling",
+    "look": "ink",
+    "blurb": "Slide a stone into the house.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "skee_ball",
+    "title": "Skee-Ball",
+    "engine": "skee_ball",
+    "look": "ink",
+    "blurb": "Roll a ball up into a scoring ring.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "cornhole",
+    "title": "Cornhole",
+    "engine": "cornhole",
+    "look": "ink",
+    "blurb": "Toss a bag onto the board.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "shuffleboard",
+    "title": "Shuffleboard",
+    "engine": "shuffleboard",
+    "look": "ink",
+    "blurb": "Slide a puck into a scoring zone.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "archery",
+    "title": "Archery",
+    "engine": "archery",
+    "look": "ink",
+    "blurb": "Aim an arrow and allow for the wind.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "horseshoes",
+    "title": "Horseshoes",
+    "engine": "horseshoes",
+    "look": "ink",
+    "blurb": "Toss a shoe toward the stake.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "pinball",
+    "title": "Pinball",
+    "engine": "pinball",
+    "look": "pinball",
+    "blurb": "Flippers keep a ball away from the drain.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "recipe",
+    "title": "Recipe",
+    "engine": "recipe",
+    "look": "ink",
+    "blurb": "Tap ingredients in the order shown.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "path_memory",
+    "title": "Path Memory",
+    "engine": "path_memory",
+    "look": "ink",
+    "blurb": "Watch a path, then tap it back.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "uno",
+    "title": "Uno",
+    "engine": "uno",
+    "look": "ink",
+    "blurb": "Play a card that matches the color or the number.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "go_fish",
+    "title": "Go Fish",
+    "engine": "go_fish",
+    "look": "ink",
+    "blurb": "Ask for a card and collect pairs.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "snap",
+    "title": "Snap",
+    "engine": "snap",
+    "look": "ink",
+    "blurb": "Tap when the two cards match.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "boggle",
+    "title": "Boggle",
+    "engine": "boggle",
+    "look": "ink",
+    "blurb": "Find the words hiding in the letter grid.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "tower_defense",
+    "title": "Tower Defense",
+    "engine": "tower_defense",
+    "look": "ink",
+    "blurb": "Place towers to stop the creeps.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "chess_mate",
+    "title": "Chess Mate",
+    "engine": "chess_mate",
+    "look": "ink",
+    "blurb": "Pick the move that checkmates the king.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "cup_fill",
+    "title": "Cup Fill",
+    "engine": "cup_fill",
+    "look": "ink",
+    "blurb": "Hold to fill a cup into the marked band.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "ice_slide",
+    "title": "Ice Slide",
+    "engine": "ice_slide",
+    "look": "ink",
+    "blurb": "Slide on ice until a wall, and reach the exit.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "lottery",
+    "title": "Lottery",
+    "engine": "lottery",
+    "look": "ink",
+    "blurb": "Pick numbers and match the draw.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "rebus",
+    "title": "Rebus",
+    "engine": "rebus",
+    "look": "ink",
+    "blurb": "Solve the word puzzles.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "cup_pong",
+    "title": "Cup Pong",
+    "engine": "cup_pong",
+    "look": "ink",
+    "blurb": "Throw a ball into one of the cups.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "red_light",
+    "title": "Red Light",
+    "engine": "red_light",
+    "look": "ink",
+    "blurb": "Move only while the light is green.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "shell_game",
+    "title": "Shell Game",
+    "engine": "shell_game",
+    "look": "ink",
+    "blurb": "Follow the ball under the cups.",
+    "win": "You win.",
+    "lose": "Try again."
+  },
+  {
+    "id": "dominoes",
+    "title": "Dominoes",
+    "engine": "dominoes",
+    "look": "ink",
+    "blurb": "Play a domino that matches an open end.",
+    "win": "You win.",
+    "lose": "Try again."
+  }
+]
