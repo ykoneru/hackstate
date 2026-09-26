@@ -4,6 +4,7 @@ import { saveSheet } from "./capture/sheets";
 import { checkHealth, interpretSketch } from "./interpret/api";
 import { Phone } from "./render/Phone";
 import { SharePanel } from "./share/SharePanel";
+import { applyTheme, initialTheme, type Theme } from "./theme";
 import type { Screen } from "./contract";
 
 type Phase = "idle" | "reading" | "ready" | "error";
@@ -15,6 +16,7 @@ export function App() {
   const [phase, setPhase] = useState<Phase>("idle");
   const [error, setError] = useState<string | null>(null);
   const [hasKey, setHasKey] = useState<boolean | null>(null);
+  const [theme, setTheme] = useState<Theme>(initialTheme);
   // The block pointed at on either side: the ink on the photo or the control in the phone.
   const [activeBlock, setActiveBlock] = useState<number | null>(null);
 
@@ -23,6 +25,12 @@ export function App() {
       .then((health) => setHasKey(health.has_key))
       .catch(() => setHasKey(null));
   }, []);
+
+  function toggleTheme() {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    applyTheme(next);
+  }
 
   function handlePhoto(next: Blob | null) {
     setPhoto(next);
@@ -61,7 +69,12 @@ export function App() {
   return (
     <main className="studio">
       <header className="intro">
-        <p className="eyebrow">Napkin</p>
+        <div className="topbar">
+          <p className="eyebrow">Napkin</p>
+          <button type="button" className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}>
+            {theme === "light" ? "Dark mode" : "Light mode"}
+          </button>
+        </div>
         <h1>Point it at the paper.</h1>
         <p className="lede">
           Draw the app on a sheet of paper. Take a photo of that page. Gemini reads the ink and this screen becomes the app.
