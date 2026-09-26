@@ -38,6 +38,7 @@ Person 3 can build the phone against `frontend/src/render/fixture.ts` without a 
 ```bash
 cp .env.example .env
 # put your Gemini API key in .env
+# if Google says API_KEY_SERVICE_BLOCKED, it is an Agent Platform key: set GOOGLE_GENAI_USE_VERTEXAI=true
 
 cd backend
 python3 -m venv .venv
