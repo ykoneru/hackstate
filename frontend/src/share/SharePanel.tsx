@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
 import type { GameSave } from "../contract";
 import { shareGame } from "./api";
@@ -11,6 +11,15 @@ export function SharePanel({ game, onShared }: { game: GameSave; onShared?: (id:
   const [code, setCode] = useState<string | null>(null);
   const [working, setWorking] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const started = useRef(false);
+
+  // Show the QR code as soon as the game is ready, so a judge can scan it without anyone clicking.
+  // The ref keeps React's development double-mount from making two links.
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    void share();
+  }, []);
 
   async function share() {
     setWorking(true);
@@ -44,7 +53,7 @@ export function SharePanel({ game, onShared }: { game: GameSave; onShared?: (id:
         </figure>
       ) : (
         <button type="button" className="secondary" disabled={working} onClick={() => void share()}>
-          {working ? "Making a link…" : "Try it on your phone"}
+          {working ? "Making the QR code…" : "Try it on your phone"}
         </button>
       )}
       {unreachable && (
