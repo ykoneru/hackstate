@@ -1,12 +1,13 @@
 import { useSyncExternalStore } from "react";
-import type { Screen } from "../contract";
+import type { GameSave } from "../contract";
+import { isGameSave } from "../contract";
 
-// Every photo Gemini read, with what it returned. If the wifi dies on stage, a real earlier result can be replayed.
+// Every photo Gemini read, with the game in progress. Replaying a sheet resumes mid-play.
 export type Sheet = {
   id: string;
   savedAt: number;
   photo: string;
-  screen: Screen;
+  game: GameSave;
 };
 
 const KEY = "napkin.sheets";
@@ -20,14 +21,19 @@ export function useSheets(): Sheet[] {
   return useSyncExternalStore(subscribe, () => sheets);
 }
 
-export async function saveSheet(photo: Blob, screen: Screen): Promise<void> {
+export async function saveSheet(photo: Blob, game: GameSave): Promise<string> {
   const sheet: Sheet = {
     id: `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`,
     savedAt: Date.now(),
     photo: await shrink(photo),
-    screen,
+    game,
   };
   write([sheet, ...sheets].slice(0, LIMIT));
+  return sheet.id;
+}
+
+export function updateSheet(id: string, game: GameSave) {
+  write(sheets.map((sheet) => (sheet.id === id ? { ...sheet, game } : sheet)));
 }
 
 export function clearSheets() {
@@ -61,7 +67,7 @@ function write(next: Sheet[]) {
 function read(): Sheet[] {
   try {
     const parsed: unknown = JSON.parse(localStorage.getItem(KEY) ?? "[]");
-    return Array.isArray(parsed) ? parsed.filter(isSheet).map(withBoxes) : [];
+    return Array.isArray(parsed) ? parsed.filter(isSheet) : [];
   } catch {
     return [];
   }
@@ -73,13 +79,8 @@ function isSheet(value: unknown): value is Sheet {
     typeof sheet?.id === "string" &&
     typeof sheet.photo === "string" &&
     sheet.photo.startsWith("data:image/") &&
-    Array.isArray(sheet.screen?.blocks)
+    isGameSave(sheet.game)
   );
-}
-
-function withBoxes(sheet: Sheet): Sheet {
-  const blocks = sheet.screen.blocks.map((block) => ({ ...block, box: Array.isArray(block.box) ? block.box : [] }));
-  return { ...sheet, screen: { ...sheet.screen, blocks } };
 }
 
 async function shrink(photo: Blob): Promise<string> {

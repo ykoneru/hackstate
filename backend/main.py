@@ -4,7 +4,8 @@ from pathlib import Path
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
-from interpret import read_sketch
+from interpret import play_turn, read_sketch
+from interpret.schema import TurnRequest
 from share import router as share_router
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,7 +31,7 @@ app = FastAPI(title="Napkin")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "PUT"],
     allow_headers=["*"],
 )
 app.include_router(share_router)
@@ -66,9 +67,32 @@ async def screen(file: UploadFile = File(...)) -> dict:
     except HTTPException:
         raise
     except Exception as exc:
-        message = str(exc)
-        if "429" in message or "RESOURCE_EXHAUSTED" in message:
-            raise HTTPException(429, "Gemini rate limit. Wait a few seconds and take the photo again.") from exc
-        raise HTTPException(502, "Gemini could not read that paper. Retake it with the labels larger.") from exc
+        raise _gemini_http(exc) from exc
 
     return parsed.model_dump()
+
+
+@app.post("/api/turn")
+def turn(body: TurnRequest) -> dict:
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise HTTPException(500, "Add GEMINI_API_KEY to the .env file in the project root.")
+    try:
+        stats, result = play_turn(body, api_key)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise _gemini_http(exc) from exc
+    return {"stats": [snap.model_dump() for snap in stats], "result": result.model_dump()}
+
+
+def _gemini_http(exc: Exception) -> HTTPException:
+    message = str(exc)
+    if "429" in message or "RESOURCE_EXHAUSTED" in message:
+        return HTTPException(429, "Gemini rate limit. Wait a few seconds and try again.")
+    if "API_KEY_SERVICE_BLOCKED" in message or "PERMISSION_DENIED" in message:
+        return HTTPException(
+            403,
+            "This Gemini key is blocked. Use a key from a project with no billing, or add credits to the Prepay account.",
+        )
+    return HTTPException(502, "Gemini could not keep the game going. Try that action again.")

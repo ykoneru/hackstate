@@ -1,12 +1,12 @@
 import { useState } from "react";
 import QRCode from "qrcode";
-import type { Screen } from "../contract";
-import { shareScreen } from "./api";
+import type { GameSave } from "../contract";
+import { shareGame } from "./api";
 import "./share.css";
 
 const LOOPBACK = new Set(["localhost", "127.0.0.1", "[::1]"]);
 
-export function SharePanel({ screen }: { screen: Screen }) {
+export function SharePanel({ game, onShared }: { game: GameSave; onShared?: (id: string) => void }) {
   const [link, setLink] = useState<string | null>(null);
   const [code, setCode] = useState<string | null>(null);
   const [working, setWorking] = useState(false);
@@ -16,7 +16,9 @@ export function SharePanel({ screen }: { screen: Screen }) {
     setWorking(true);
     setError(null);
     try {
-      const url = await shareScreen(screen);
+      const shared = await shareGame(game);
+      onShared?.(shared.id);
+      const url = shared.url;
       setCode(await QRCode.toDataURL(url, { margin: 1, width: 440, color: { dark: "#241c16", light: "#fffcf8" } }));
       setLink(url);
     } catch (caught) {

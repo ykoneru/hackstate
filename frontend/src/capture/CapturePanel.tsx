@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import type { Block, Screen } from "../contract";
+import type { Block, GameSave } from "../contract";
 import { InkBoxes } from "./InkBoxes";
 import { preparePhoto } from "./preparePhoto";
 import { RecentSheets } from "./RecentSheets";
@@ -14,7 +14,7 @@ const COUNTDOWN = 3;
 type CapturePanelProps = {
   busy: boolean;
   onPhoto: (photo: Blob | null) => void;
-  onReplay: (photo: Blob, screen: Screen) => void;
+  onReplay: (photo: Blob, game: GameSave, id: string) => void;
   // Blocks read from the photo on the stage, so their boxes can be drawn over the ink.
   blocks: Block[];
   activeBlock: number | null;
@@ -194,7 +194,7 @@ export function CapturePanel({
     const photo = await photoFromSheet(sheet);
     replacePhoto(sheet.photo);
     setMode("photo");
-    onReplay(photo, sheet.screen);
+    onReplay(photo, sheet.game, sheet.id);
   }
 
   const locked = busy || preparing;

@@ -1,6 +1,6 @@
 .device {
   width: 340px;
-  height: 680px;
+  height: min(680px, 100dvh);
   padding: 12px;
   border-radius: 36px;
   background: #1b1714;
