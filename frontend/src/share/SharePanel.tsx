@@ -19,7 +19,7 @@ export function SharePanel({ game, onShared }: { game: GameSave; onShared?: (id:
       const shared = await shareGame(game);
       onShared?.(shared.id);
       const url = shared.url;
-      setCode(await QRCode.toDataURL(url, { margin: 1, width: 440, color: { dark: "#241c16", light: "#fffcf8" } }));
+      setCode(await QRCode.toDataURL(url, { margin: 1, width: 440, color: { dark: "#20221f", light: "#fffefa" } }));
       setLink(url);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Could not make a link for this app.");

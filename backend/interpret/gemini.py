@@ -60,7 +60,11 @@ def play_turn(request: TurnRequest, api_key: str) -> tuple[list, TurnResult]:
 def _client(api_key: str):
     from google import genai
 
-    use_vertex = os.environ.get("GEMINI_VERTEX", "").strip().lower() in {"1", "true", "yes"}
+    flags = (
+        os.environ.get("GEMINI_VERTEX", ""),
+        os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", ""),
+    )
+    use_vertex = any(flag.strip().lower() in {"1", "true", "yes"} for flag in flags)
     if use_vertex:
         return genai.Client(vertexai=True, api_key=api_key)
     return genai.Client(api_key=api_key)

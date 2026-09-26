@@ -1,5 +1,7 @@
 # Napkin
 
+https://www.mlh.com/projects/01a0deb9-a659-218f-1511-39cec8d23565/invites/view/8oQZwHWK90xIAJpQwwMNwOBxvB4xw37ct9dorBjW8UU
+
 Drawing an app on paper. Take a photo of that page. Gemini reads the ink and the page becomes a screen you can tap.
 
 There is no drawing tool on the laptop. The only input is a photograph of real paper.
@@ -38,6 +40,7 @@ Person 3 can build the phone against `frontend/src/render/fixture.ts` without a 
 ```bash
 cp .env.example .env
 # put your Gemini API key in .env
+# if Google says API_KEY_SERVICE_BLOCKED, it is an Agent Platform key: set GOOGLE_GENAI_USE_VERTEXAI=true
 
 cd backend
 python3 -m venv .venv
