@@ -1,0 +1,142 @@
+:root {
+  color: #241c16;
+  background: #efe6d6;
+  font-family: Outfit, "Avenir Next", "Segoe UI", sans-serif;
+  line-height: 1.45;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.7), transparent 36%),
+    #efe6d6;
+}
+
+button, input { font: inherit; }
+
+button { cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid #9c3b28;
+  outline-offset: 3px;
+}
+
+.studio {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 36px 0 64px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+h1 {
+  margin: 0;
+  max-width: 14ch;
+  font-family: Fraunces, "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 560;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.lede {
+  max-width: 46ch;
+  margin: 16px 0 0;
+  font-size: 18px;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: 36px;
+  align-items: start;
+  margin-top: 36px;
+}
+
+.primary,
+.secondary {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 12px 18px;
+}
+
+.primary {
+  background: #241c16;
+  color: #f7f1e6;
+}
+
+.primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.secondary {
+  background: transparent;
+  border-color: #cbbba6;
+  color: #241c16;
+}
+
+.make { margin-top: 14px; }
+
+.hint,
+.error {
+  margin: 12px 0 0;
+  font-size: 14px;
+}
+
+.error { color: #9c3b28; }
+
+.result { display: grid; justify-items: center; }
+
+.phone-slot { position: relative; }
+
+.phone-slot.busy .device { opacity: 0.45; }
+
+.veil {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #241c16;
+  color: #f7f1e6;
+  text-align: center;
+}
+
+.schema {
+  width: min(100%, 340px);
+  margin-top: 14px;
+  color: #6d6256;
+  font-size: 13px;
+}
+
+.schema pre {
+  max-height: 180px;
+  overflow: auto;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f7f1e6;
+  color: #241c16;
+}
+
+@media (max-width: 860px) {
+  .workspace { grid-template-columns: 1fr; }
+  .result { justify-items: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto; }
+}
