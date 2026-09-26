@@ -17,7 +17,7 @@ export function SharePanel({ screen }: { screen: Screen }) {
     setError(null);
     try {
       const url = await shareScreen(screen);
-      setCode(await QRCode.toDataURL(url, { margin: 1, width: 440, color: { dark: "#241c16", light: "#fffcf8" } }));
+      setCode(await QRCode.toDataURL(url, { margin: 1, width: 440, color: { dark: "#20221f", light: "#fffefa" } }));
       setLink(url);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Could not make a link for this app.");

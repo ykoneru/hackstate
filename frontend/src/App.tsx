@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CapturePanel } from "./capture/CapturePanel";
 import { saveSheet } from "./capture/sheets";
-import { checkHealth, interpretSketch } from "./interpret/api";
+import { interpretSketch } from "./interpret/api";
 import { Phone } from "./render/Phone";
 import { SharePanel } from "./share/SharePanel";
+import { applyTheme, initialTheme, type Theme } from "./theme";
 import type { Screen } from "./contract";
 
 type Phase = "idle" | "reading" | "ready" | "error";
@@ -14,15 +15,15 @@ export function App() {
   const [screenId, setScreenId] = useState(0);
   const [phase, setPhase] = useState<Phase>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [hasKey, setHasKey] = useState<boolean | null>(null);
+  const [theme, setTheme] = useState<Theme>(initialTheme);
   // The block pointed at on either side: the ink on the photo or the control in the phone.
   const [activeBlock, setActiveBlock] = useState<number | null>(null);
 
-  useEffect(() => {
-    checkHealth()
-      .then((health) => setHasKey(health.has_key))
-      .catch(() => setHasKey(null));
-  }, []);
+  function toggleTheme() {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    applyTheme(next);
+  }
 
   function handlePhoto(next: Blob | null) {
     setPhoto(next);
@@ -61,15 +62,35 @@ export function App() {
   return (
     <main className="studio">
       <header className="intro">
-        <p className="eyebrow">Napkin</p>
-        <h1>Point it at the paper.</h1>
-        <p className="lede">
-          Draw the app on a sheet of paper. Take a photo of that page. Gemini reads the ink and this screen becomes the app.
-        </p>
+        <div className="topbar">
+          <p className="eyebrow">Napkin</p>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              {theme === "light" ? (
+                <path d="M20.9 13.2A9 9 0 0 1 10.8 3.1 9 9 0 1 0 20.9 13.2Z" />
+              ) : (
+                <>
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
+        <h1>Sketch to screen.</h1>
       </header>
 
       <section className="workspace">
-        <div className="pane">
+        <div className="pane capture-pane">
+          <div className="pane-head">
+            <h2>Capture</h2>
+          </div>
           <CapturePanel
             busy={phase === "reading"}
             onPhoto={handlePhoto}
@@ -86,25 +107,19 @@ export function App() {
             >
               {phase === "reading" ? "Reading the paper…" : "Make the app"}
             </button>
-            {hasKey === false && (
-              <p className="hint">Add GEMINI_API_KEY to .env before you photograph the paper.</p>
-            )}
             {error && <p className="error">{error}</p>}
           </CapturePanel>
         </div>
 
         <div className="pane result">
+          <div className="pane-head">
+            <h2>Preview</h2>
+          </div>
           <div className={phase === "reading" ? "phone-slot busy" : "phone-slot"}>
             <Phone key={screenId} screen={screen} />
             {phase === "reading" && <p className="veil">Reading the ink on the paper</p>}
           </div>
           {screen && phase === "ready" && <SharePanel key={screenId} screen={screen} />}
-          {screen && phase === "ready" && (
-            <details className="schema">
-              <summary>What Gemini returned</summary>
-              <pre>{JSON.stringify(screen, null, 2)}</pre>
-            </details>
-          )}
         </div>
       </section>
     </main>
