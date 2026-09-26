@@ -1,3 +1,5 @@
+import { scan } from "./scan";
+
 const MAX_EDGE = 1600;
 
 export async function preparePhoto(file: Blob): Promise<Blob> {
@@ -6,13 +8,14 @@ export async function preparePhoto(file: Blob): Promise<Blob> {
   const canvas = document.createElement("canvas");
   canvas.width = Math.max(1, Math.round(bitmap.width * scale));
   canvas.height = Math.max(1, Math.round(bitmap.height * scale));
-  const context = canvas.getContext("2d");
+  const context = canvas.getContext("2d", { willReadFrequently: true });
   if (!context) {
     bitmap.close();
     return file;
   }
   context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
   bitmap.close();
-  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.88));
+  const scanned = scan(canvas);
+  const blob = await new Promise<Blob | null>((resolve) => scanned.toBlob(resolve, "image/jpeg", 0.88));
   return blob ?? file;
 }
